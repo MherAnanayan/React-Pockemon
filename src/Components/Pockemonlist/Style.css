@@ -1,0 +1,7 @@
+.pocemonitem-area {
+    display: flex;
+    padding: 30px;
+    flex-flow: row wrap;
+    justify-content: center;
+    background-color: #cccccc;
+}

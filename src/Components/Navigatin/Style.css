@@ -1,0 +1,16 @@
+.navigation-area {
+    display: flex;
+    background-color: lightgrey;
+    border-bottom: 1px solid beige;
+}
+
+.nav-text-area {
+
+       margin-left: 100px;
+       color: seashell;
+       font-size: 15px;
+}
+.MuiButton-textSizeSmall {
+    
+    margin-left: 20px;
+}
