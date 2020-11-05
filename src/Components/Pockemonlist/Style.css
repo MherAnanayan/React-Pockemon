@@ -1,7 +1,8 @@
 .pocemonitem-area {
     display: flex;
     padding: 30px;
-    flex-flow: row wrap;
+    flex-flow: column;
     justify-content: center;
     background-color: #cccccc;
+    align-items: center;
 }

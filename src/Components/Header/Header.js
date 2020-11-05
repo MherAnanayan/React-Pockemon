@@ -1,13 +1,25 @@
 import React from 'react';
-import Logo from './pockemon.jpg'
+import styled from 'styled-components';
+import Logo from './pockemon.jpg';
 
-import './Style.css'
+
+
+const StyledHeader = styled.div`
+    width: 100%;
+    height: 50px;
+    background-color:#f1f1f1;
+    border-bottom: 3px solid #e14278;
+`;
+const StyledImg = styled.img`
+margin-left: 50px;
+    width: 50px;
+`;
 
 const Header = () => {
     return (
-        <div className='Header-area'>
-            <img className='logo-stl' src={Logo} alt='Logo' ></img>
-        </div>
+        <StyledHeader >
+            <StyledImg  src={Logo} alt='Logo' ></StyledImg>
+        </StyledHeader>
     )
 }
 
