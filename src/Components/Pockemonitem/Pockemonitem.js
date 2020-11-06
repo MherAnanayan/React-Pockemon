@@ -63,8 +63,7 @@ const Pockemonitem = ({currenturl, url, name, index}) => {
 
     useEffect(() => {
         setLoading(true)
-        axios
-            .get(url)
+        axios.get(url)
             .then(response => {
                 setLoading(false)
                 setCurrentUrl(url)
@@ -73,10 +72,17 @@ const Pockemonitem = ({currenturl, url, name, index}) => {
                 setPockemonheight(response.data.height)
                 setPockemondata(response.data)
                 
-            }).then(dispatch(addPockemonDetailsData(pockemondata)))
-            
+                
+            })
+        axios.get("https://pokeapi.co/api/v2/type/")
+            .then(response => {
+                setLoading(false)
+                
+                dispatch(addPockemonDetailsData(response.data.results))
 
-    }, [url])
+            })
+
+    }, ["https://pokeapi.co/api/v2/type/"])
         
             
     const openModal = () => {
@@ -93,9 +99,6 @@ const Pockemonitem = ({currenturl, url, name, index}) => {
 
     Modal.setAppElement(document.getElementById('root'));
 
-    console.log(pockemondata)
-       
-    
 
     if (loading) 
         return ""
