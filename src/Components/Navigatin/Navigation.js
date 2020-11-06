@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
 import styled from 'styled-components';
 
 const StyledDiv = styled.div`
@@ -18,10 +17,10 @@ const Navigation = () => {
         
             <StyledDiv>
             <StyledP>Filtration by</StyledP>
-                <Button  size="small" color="primary">ALL</Button>
-                <Button size="small" color="secondary">ALL</Button>
-                <Button size="small" color="primary">ALL</Button>
-                <Button size="small" color="primary">ALL</Button>
+                <button  size="small" color="primary">ALL</button>
+                <button size="small" color="secondary">ALL</button>
+                <button size="small" color="primary">ALL</button>
+                <button size="small" color="primary">ALL</button>
             </StyledDiv>
         
         
