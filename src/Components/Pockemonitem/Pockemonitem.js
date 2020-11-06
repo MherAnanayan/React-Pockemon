@@ -53,13 +53,12 @@ const StyledButton = styled.button `
 const Pockemonitem = ({currenturl, url, name, index}) => {
     const dispatch = useDispatch();
     const [currentUrl, setCurrentUrl] = useState(currenturl)
-    const [pockemondata, setPockemondata] = useState({type:[]})
+    const [pockemondata, setPockemondata] = useState()
     const [pockemonimgdata, setPockemonimgdata] = useState([])
     const [pockemondetailsdata, setPockemonditailsdata] = useState([])
     const [loading, setLoading] = useState(true)
     const [modalIsOpen, setIsOpen] = useState(false)
     const [pockemonheight, setPockemonheight] = useState([])
-    
     let subtitle
 
     useEffect(() => {
@@ -67,18 +66,19 @@ const Pockemonitem = ({currenturl, url, name, index}) => {
         axios
             .get(url)
             .then(response => {
-                
                 setLoading(false)
+                setCurrentUrl(url)
                 setPockemonimgdata(response.data.sprites.front_default)
                 setPockemonditailsdata(response.data.base_experience)
                 setPockemonheight(response.data.height)
                 setPockemondata(response.data)
-                dispatch(addPockemonDetailsData(pockemondata))
                 
-            })
+            }).then(dispatch(addPockemonDetailsData(pockemondata)))
+            
 
     }, [url])
-
+        
+            
     const openModal = () => {
         setIsOpen(true);
     }
@@ -93,7 +93,10 @@ const Pockemonitem = ({currenturl, url, name, index}) => {
 
     Modal.setAppElement(document.getElementById('root'));
 
+    console.log(pockemondata)
+       
     
+
     if (loading) 
         return ""
 
@@ -107,7 +110,7 @@ const Pockemonitem = ({currenturl, url, name, index}) => {
                 onRequestClose={closeModal}
                 style={customStyles}
                 contentLabel="Example Modal">
-                <Pockemonimg src={pockemonimgdata} alt="img"/>
+                <Pockemonimg src={pockemonimgdata} />
                 <h2 ref={_subtitle => (subtitle = _subtitle)}>{`${index}. ${name}`}</h2>
                 <h5>{`Base-experience - ${pockemondetailsdata}`}</h5>
                 <h5>{`Height - ${pockemonheight}`}</h5>
@@ -116,7 +119,7 @@ const Pockemonitem = ({currenturl, url, name, index}) => {
             <StyledP>
                 {`${index}. ${name}`}
             </StyledP>
-            <img src={pockemonimgdata} alt="img"/>
+            <img src={pockemonimgdata} />
             <StyledButton onClick={openModal}>Details</StyledButton>
         </StyledDiv>
 

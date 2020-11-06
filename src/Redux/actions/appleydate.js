@@ -13,7 +13,7 @@ export const addPockemonData = (formData) => {
     return dispatch => {
         return dispatch({
             type: ADD_POCKEMON_DETAILS_DATA,
-            payload: formData,
+            payload: {formData},
         });
     }
 }

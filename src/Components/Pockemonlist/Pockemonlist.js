@@ -42,14 +42,17 @@ const Pockemonlist = (props) => {
         axios.get(currentPageUrl, {
                 cancelToken: new axios.CancelToken(c => cancel = c)
             })
+            
             .then(response => {
                 setLoading(false)
                 setData(response.data)
                 setNextPageUrl(response.data.next)
                 setPrevPageUrl(response.data.previous)
-                dispatch(addPockemonData(data))
-                
             })
+            .then(
+                dispatch(addPockemonData(data))
+            )
+            
         return () => cancel()
     }, [currentPageUrl])
 
@@ -63,6 +66,7 @@ const Pockemonlist = (props) => {
        dispatch(addPockemonData(data))
     }
     
+    console.log(props.types)
     
  
     if (loading) return "Loading..."
