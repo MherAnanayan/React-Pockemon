@@ -13,7 +13,11 @@ const customStyles = {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
-        width: '30%',
+<<<<<<< HEAD:src/Components/Pokemonitem/Pokemonitem.js
+        width: '33%',
+=======
+        width: '33%',
+>>>>>>> 14088ed80932d4e2a4f4fb339196eaee496cae33:src/Components/Pockemonitem/Pockemonitem.js
         display: 'flex',
         flexFlow: 'column'
     }
@@ -60,6 +64,7 @@ const Pokemonitem = ({currenturl, url, name, index}) => {
     let subtitle
 
     useEffect(() => {
+<<<<<<< HEAD:src/Components/Pokemonitem/Pokemonitem.js
         let cancel
         const fetchData = async() => {
             
@@ -79,6 +84,22 @@ const Pokemonitem = ({currenturl, url, name, index}) => {
         fetchData()
     }, [url])
 
+=======
+        setLoading(true)
+        axios.get(url)
+            .then(response => {
+                setLoading(false)
+                setCurrentUrl(url)
+                setPockemonimgdata(response.data.sprites.front_default)
+                setPockemonditailsdata(response.data.base_experience)
+                setPockemonheight(response.data.height)
+                setPockemondata(response.data)
+                
+                
+            })}, [url])
+        
+            
+>>>>>>> 14088ed80932d4e2a4f4fb339196eaee496cae33:src/Components/Pockemonitem/Pockemonitem.js
     const openModal = () => {
         setIsOpen(true);
     }
@@ -128,4 +149,8 @@ const mapDispatchToProps = {
     addPokemonDetailsData
 };
 
+<<<<<<< HEAD:src/Components/Pokemonitem/Pokemonitem.js
 export default connect(mapStateToProps, mapDispatchToProps)(Pokemonitem)
+=======
+export default connect(mapStateToProps, mapDispatchToProps)(Pockemonitem)
+>>>>>>> 14088ed80932d4e2a4f4fb339196eaee496cae33:src/Components/Pockemonitem/Pockemonitem.js
