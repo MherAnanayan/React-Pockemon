@@ -146,7 +146,11 @@ const mapDispatchToProps = {
 };
 
 <<<<<<< HEAD:src/Components/Pokemonitem/Pokemonitem.js
+<<<<<<< HEAD:src/Components/Pokemonitem/Pokemonitem.js
 export default connect(mapStateToProps, mapDispatchToProps)(Pokemonitem)
+=======
+export default connect(mapStateToProps, mapDispatchToProps)(Pockemonitem)
+>>>>>>> 14088ed80932d4e2a4f4fb339196eaee496cae33:src/Components/Pockemonitem/Pockemonitem.js
 =======
 export default connect(mapStateToProps, mapDispatchToProps)(Pockemonitem)
 >>>>>>> 14088ed80932d4e2a4f4fb339196eaee496cae33:src/Components/Pockemonitem/Pockemonitem.js
