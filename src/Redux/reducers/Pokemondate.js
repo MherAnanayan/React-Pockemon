@@ -1,24 +1,23 @@
-import * as Pokemondata from '../actions/types'
+import {LOAD_DATA, GET_DATA} from '../actions/types'
 
 
 const initialState = {
-    pokemonData: {},
-    pokemonDetails: {},
+    loading: false,
+    nexUrl: null,
+    prevUrl: null,
+    listArray: null,
 }
 
 export default function (state = initialState, { type, payload }) {
     switch (type) {
-        case Pokemondata.ADD_POKEMON_DATA:
+        case LOAD_DATA:
             return {
                 ...state,
-                pokemonData: payload,
+                loading: true,
             };
 
-        case Pokemondata.ADD_POKEMON_DETAILS_DATA:
-            return {
-                ...state,
-                pokemonDetails: payload,
-            };
+        case GET_DATA:
+            return payload;
         
         default:
             return state;

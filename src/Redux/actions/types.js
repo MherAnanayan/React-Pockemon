@@ -1,2 +1,2 @@
-export const ADD_POKEMON_DATA = 'ADD_POKEMON_DATA';
-export const ADD_POKEMON_DETAILS_DATA = 'ADD_POKEMON_DETAILS_DATA';
+export const GET_DATA = "GET_DATA";
+export const LOAD_DATA = "LOAD_DATA";

@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import Modal from 'react-modal';
 import {useDispatch, connect} from 'react-redux';
-import {addPokemonDetailsData} from '../../Redux/actions/appleydate';
 import axios from 'axios';
 import styled from 'styled-components';
 
@@ -49,35 +48,35 @@ const StyledButton = styled.button `
     border-radius:5px;
 `;
 
-const Pokemonitem = ({currenturl, url, name, index}) => {
+const Pokemonitem = ({url, name, types}) => {
     const dispatch = useDispatch();
-    const [pokemondata, setPokemondata] = useState()
     const [pokemonimgdata, setPokemonimgdata] = useState([])
     const [pokemondetailsdata, setPokemonditailsdata] = useState([])
     const [loading, setLoading] = useState(true)
     const [modalIsOpen, setIsOpen] = useState(false)
     const [pokemonheight, setPokemonheight] = useState([])
+    const [number, setNumber] = useState()
     let subtitle
 
-    useEffect(() => {
-        let cancel
-        const fetchData = async() => {
+    // useEffect(() => {
+    //     let cancel
+    //     const fetchData = async() => {
             
-            setLoading(true)
-            const result = await axios.get(url, {
-                cancelToken: new axios.CancelToken(c => cancel = c)
-            })
-            setPokemonimgdata(result.data.sprites.front_default)
-            setPokemonditailsdata(result.data.base_experience)
-            setPokemonheight(result.data.height)
-            setPokemondata(result.data)
-            setLoading(false)
-            dispatch(addPokemonDetailsData(result.date))
+    //         setLoading(true)
+    //         const result = await axios.get(url, {
+    //             cancelToken: new axios.CancelToken(c => cancel = c)
+    //         })
+    //         setPokemonimgdata(result.data.sprites.front_default)
+    //         setPokemonditailsdata(result.data.base_experience)
+    //         setPokemonheight(result.data.height)
+    //         setNumber(result.data.id)
+    //         setLoading(false)
+    //         dispatch(addPokemonDetailsData(result.date))
 
-            return () => cancel()
-        }
-        fetchData()
-    }, [url])
+    //         return () => cancel()
+    //     }
+    //     fetchData()
+    // }, [url])
 
     const openModal = () => {
         setIsOpen(true);
@@ -95,7 +94,7 @@ const Pokemonitem = ({currenturl, url, name, index}) => {
 
     if (loading) 
         return ""
-
+console.log(types);
     return (
 
         <StyledDiv >
@@ -107,13 +106,13 @@ const Pokemonitem = ({currenturl, url, name, index}) => {
                 style={customStyles}
                 contentLabel="Example Modal">
                 <Pokemonimg src={pokemonimgdata} alt='pokemon'/>
-                <h2 ref={_subtitle => (subtitle = _subtitle)}>{`${index}. ${name}`}</h2>
+                <h2 ref={_subtitle => (subtitle = _subtitle)}>{`${number}. ${name}`}</h2>
                 <h5>{`Base-experience - ${pokemondetailsdata}`}</h5>
                 <h5>{`Height - ${pokemonheight}`}</h5>
                 <form></form>
             </Modal>
             <StyledP>
-                {`${index}. ${name}`}
+                {`${number}. ${name}`}
             </StyledP>
             <img src={pokemonimgdata} alt='pokemon'/>
             <StyledButton onClick={openModal}>Details</StyledButton>
@@ -122,12 +121,6 @@ const Pokemonitem = ({currenturl, url, name, index}) => {
     );
 }
 
-const mapStateToProps = (state) => ({types: state});
 
-const mapDispatchToProps = {
-    addPokemonDetailsData
-};
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Pokemonitem)
+export default Pokemonitem
 

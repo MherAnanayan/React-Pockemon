@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import Pokemonitem from '../Pokemonitem/Pokemonitem';
 import {useDispatch, connect} from 'react-redux';
-import {addPokemonData} from '../../Redux/actions/appleydate';
+import { addPokemonData, fentchData} from '../../Redux/actions/appleydate';
 import Pagination from '../Pagination'
-import axios from 'axios';
 import styled from 'styled-components';
 
 const Styledpokemonarea = styled.div `
@@ -15,49 +14,24 @@ const Styledpokemonarea = styled.div `
     align-items: center;
 `;
 
-const Pokemonlist = (props) => {
-    const dispatch = useDispatch();
-    const [data, setData] = useState({results: []})
-    const [currentPageUrl, setCurrentPageUrl] = useState("https://pokeapi.co/api/v2/pokemon")
-    const [nextPageUrl, setNextPageUrl] = useState()
-    const [prevPageUrl, setPrevPageUrl] = useState()
-    const [loading, setLoading] = useState(true)
+const Pokemonlist = ({nextUrl, prevUrl, listArray, loading, fentchData}) => {
+
 
     useEffect(() => {
-        let cancel
-        const fetchData = async() => {
-            setLoading(true)
-            const result = await axios.get(currentPageUrl, {
-                cancelToken: new axios.CancelToken(c => cancel = c)
-            })
-            
-            setData(result.data)
-            setNextPageUrl(result.data.next)
-            setPrevPageUrl(result.data.previous)
-            setLoading(false)
-            dispatch(addPokemonData(result.data))
+        fentchData();
+    }, [])
+    
+    console.log(nextUrl);
+    console.log(prevUrl);
+    console.log(listArray);
 
-            return () => cancel()
-        }
-        fetchData()
-    }, [currentPageUrl])
-
-    const gotoNextPage = () => {
-        setCurrentPageUrl(nextPageUrl)
-        dispatch(addPokemonData(data))
-    }
-
-    const gotoPrevPage = () => {
-        setCurrentPageUrl(prevPageUrl)
-        dispatch(addPokemonData(data))
-    }
 
     if (loading) 
         return "Loading..."
 
     return (
         <Styledpokemonarea>
-            <Pagination
+            {/* <Pagination
                 gotoNextPage={nextPageUrl
                 ? gotoNextPage
                 : null}
@@ -67,11 +41,10 @@ const Pokemonlist = (props) => {
                 .results
                 .map((item, index) => {
                     return (<Pokemonitem
-                        currenturl={currentPageUrl}
                         url={item.url}
                         key={index}
                         name={item.name}
-                        index={index + 1}/>)
+                        />)
                 })}
 
             <Pagination
@@ -80,17 +53,17 @@ const Pokemonlist = (props) => {
                 : null}
                 gotoPrevPage={prevPageUrl
                 ? gotoPrevPage
-                : null}/>
+                : null}/> */}
 
         </Styledpokemonarea>
 
     )
 }
 
-const mapStateToProps = (state) => ({types: state.Pokemondate.pokemonDetails.formData});
+const mapStateToProps = (state) => ({data: state.Pokemondate});
 
 const mapDispatchToProps = {
-    addPokemonData
+    fentchData
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Pokemonlist);
