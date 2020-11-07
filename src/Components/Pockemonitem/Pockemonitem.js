@@ -73,16 +73,7 @@ const Pockemonitem = ({currenturl, url, name, index}) => {
                 setPockemondata(response.data)
                 
                 
-            })
-        axios.get("https://pokeapi.co/api/v2/type/")
-            .then(response => {
-                setLoading(false)
-                
-                dispatch(addPockemonDetailsData(response.data.results))
-
-            })
-
-    }, ["https://pokeapi.co/api/v2/type/"])
+            })}, [url])
         
             
     const openModal = () => {
