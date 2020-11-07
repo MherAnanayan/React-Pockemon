@@ -1,13 +1,13 @@
 import Header from './Components/Header/Header';
-import Pockemonlist from './Components/Pockemonlist/Pockemonlist';
-import Navigation from './Components/Navigatin/Navigation';
+import Pokemonlist from './Components/Pokemonlist/Pokemonlist';
+
 
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <Pockemonlist />
+      <Pokemonlist />
     </div>
   );
 }

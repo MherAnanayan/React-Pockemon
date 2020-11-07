@@ -1,18 +1,18 @@
-import { ADD_POCKEMON_DATA, ADD_POCKEMON_DETAILS_DATA } from './types'
+import { ADD_POKEMON_DATA, ADD_POKEMON_DETAILS_DATA } from './types'
 
-export const addPockemonData = (formData) => {
+export const addPokemonData = (formData) => {
     return dispatch => {
         return dispatch({
-            type: ADD_POCKEMON_DATA,
+            type: ADD_POKEMON_DATA,
             payload: formData,
         });
     }
 }
 
- export const addPockemonDetailsData = (formData) => {
+ export const addPokemonDetailsData = (formData) => {
     return dispatch => {
         return dispatch({
-            type: ADD_POCKEMON_DETAILS_DATA,
+            type: ADD_POKEMON_DETAILS_DATA,
             payload: {formData},
         });
     }

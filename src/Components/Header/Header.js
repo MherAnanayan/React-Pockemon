@@ -1,24 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
-import Logo from './pockemon.jpg';
+import Plogo from './Plogo.jpg';
 
 
 
 const StyledHeader = styled.div`
     width: 100%;
-    height: 50px;
+    height: 60px;
     background-color:#f1f1f1;
     border-bottom: 3px solid #e14278;
 `;
 const StyledImg = styled.img`
 margin-left: 50px;
-    width: 50px;
+    width: 60px;
 `;
 
 const Header = () => {
     return (
         <StyledHeader >
-            <StyledImg  src={Logo} alt='Logo' ></StyledImg>
+            <StyledImg  src={Plogo} alt='Logo' ></StyledImg>
         </StyledHeader>
     )
 }
