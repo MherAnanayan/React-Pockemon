@@ -60,7 +60,6 @@ const Pokemonitem = ({currenturl, url, name, index}) => {
     let subtitle
 
     useEffect(() => {
-<<<<<<< HEAD:src/Components/Pokemonitem/Pokemonitem.js
         let cancel
         const fetchData = async() => {
             
@@ -80,22 +79,6 @@ const Pokemonitem = ({currenturl, url, name, index}) => {
         fetchData()
     }, [url])
 
-=======
-        setLoading(true)
-        axios.get(url)
-            .then(response => {
-                setLoading(false)
-                setCurrentUrl(url)
-                setPockemonimgdata(response.data.sprites.front_default)
-                setPockemonditailsdata(response.data.base_experience)
-                setPockemonheight(response.data.height)
-                setPockemondata(response.data)
-                
-                
-            })}, [url])
-        
-            
->>>>>>> 14088ed80932d4e2a4f4fb339196eaee496cae33:src/Components/Pockemonitem/Pockemonitem.js
     const openModal = () => {
         setIsOpen(true);
     }
