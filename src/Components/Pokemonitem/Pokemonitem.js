@@ -13,11 +13,7 @@ const customStyles = {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
-<<<<<<< HEAD:src/Components/Pokemonitem/Pokemonitem.js
         width: '33%',
-=======
-        width: '33%',
->>>>>>> 14088ed80932d4e2a4f4fb339196eaee496cae33:src/Components/Pockemonitem/Pockemonitem.js
         display: 'flex',
         flexFlow: 'column'
     }
