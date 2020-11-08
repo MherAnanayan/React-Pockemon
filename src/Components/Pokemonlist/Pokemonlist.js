@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import Pokemonitem from '../Pokemonitem/Pokemonitem';
-import { connect} from 'react-redux';
-import { fetchData} from '../../Redux/actions/appleydate';
+import { connect } from 'react-redux';
+import { fetchData } from '../../Redux/actions/Datafatch';
 import Pagination from '../Pagination'
 import styled from 'styled-components';
 
@@ -26,7 +26,7 @@ const StyledLoading = styled.h1`
 `;
 
 const Pokemonlist = ({data, fetchData }) => {
-    const {next, previous, listArray, loading, error } = data
+    const {listArray, loading, error } = data
     
     useEffect(() => {
         fetchData();

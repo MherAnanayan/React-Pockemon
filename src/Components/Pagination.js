@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import styled from 'styled-components';
-import {fetchData} from '../Redux/actions/appleydate';
+import {fetchData} from '../Redux/actions/Datafatch';
 
 const PaginationButtonArea = styled.div `
     background-color: silver;

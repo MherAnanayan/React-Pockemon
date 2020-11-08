@@ -1,5 +1,7 @@
 import axios from 'axios';
+import { useCallback } from 'react';
 import {LOAD_DATA, LOAD_DATA_SUCCESS, LOAD_DATA_ERROR} from './types'
+
 
 const currentPageUrl = "https://pokeapi.co/api/v2/pokemon/"
 

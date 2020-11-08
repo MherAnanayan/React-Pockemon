@@ -27,7 +27,7 @@ const StyledLoading = styled.h1`
 
 const Pokemonitem = ({item}) => {
 
-    const [pokemonimgdata] = useState([item.sprites.front_default])
+    const [pokemonimgdata] = useState([item.sprites.front_shiny])
     const [pokemondetailsdata] = useState([item])
 
     if (item.loading) 
