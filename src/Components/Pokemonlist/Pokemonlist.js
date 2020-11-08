@@ -1,96 +1,69 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import Pokemonitem from '../Pokemonitem/Pokemonitem';
-import {useDispatch, connect} from 'react-redux';
-import {addPokemonData} from '../../Redux/actions/appleydate';
+import { connect} from 'react-redux';
+import { fetchData} from '../../Redux/actions/appleydate';
 import Pagination from '../Pagination'
-import axios from 'axios';
 import styled from 'styled-components';
 
 const Styledpokemonarea = styled.div `
     display: flex;
     padding: 30px;
-    flex-flow: column;
+    flex-flow: wrap;
     justify-content: center;
     background-color: #cccccc;
     align-items: center;
+    min-height: 400px;
+    
+`;
+const StyledLoading = styled.h1`
+   
+   justify-content: center;
+    margin: auto;
+    width: 100%;
+    display: flex;
+    background-color: silver;
+    
 `;
 
-const Pokemonlist = (props) => {
-    const dispatch = useDispatch();
-    const [data, setData] = useState({results: []})
-    const [currentPageUrl, setCurrentPageUrl] = useState("https://pokeapi.co/api/v2/pokemon")
-    const [nextPageUrl, setNextPageUrl] = useState()
-    const [prevPageUrl, setPrevPageUrl] = useState()
-    const [loading, setLoading] = useState(true)
-
+const Pokemonlist = ({data, fetchData }) => {
+    const {next, previous, listArray, loading, error } = data
+    
     useEffect(() => {
-        let cancel
-        const fetchData = async() => {
-            setLoading(true)
-            const result = await axios.get(currentPageUrl, {
-                cancelToken: new axios.CancelToken(c => cancel = c)
-            })
-            
-            setData(result.data)
-            setNextPageUrl(result.data.next)
-            setPrevPageUrl(result.data.previous)
-            setLoading(false)
-            dispatch(addPokemonData(result.data))
+        fetchData();
+    }, [])
 
-            return () => cancel()
-        }
-        fetchData()
-    }, [currentPageUrl])
+    
+    
+    const Loading = <StyledLoading>Loading...</StyledLoading>
 
-    const gotoNextPage = () => {
-        setCurrentPageUrl(nextPageUrl)
-        dispatch(addPokemonData(data))
-    }
-
-    const gotoPrevPage = () => {
-        setCurrentPageUrl(prevPageUrl)
-        dispatch(addPokemonData(data))
-    }
-
-    if (loading) 
-        return "Loading..."
+    if (error) return error    
 
     return (
-        <Styledpokemonarea>
-            <Pagination
-                gotoNextPage={nextPageUrl
-                ? gotoNextPage
-                : null}
-                gotoPrevPage={prevPageUrl
-                ? gotoPrevPage
-                : null}/> {data
-                .results
-                .map((item, index) => {
-                    return (<Pokemonitem
-                        currenturl={currentPageUrl}
-                        url={item.url}
-                        key={index}
-                        name={item.name}
-                        index={index + 1}/>)
-                })}
+        <>
+        <Pagination /> 
+            <Styledpokemonarea>
 
-            <Pagination
-                gotoNextPage={nextPageUrl
-                ? gotoNextPage
-                : null}
-                gotoPrevPage={prevPageUrl
-                ? gotoPrevPage
-                : null}/>
+                {!loading ?  listArray.length &&
+                    listArray
+                        .map((item) => {
+                            return (<Pokemonitem
+                                key={item.id}
+                                item={item}
 
-        </Styledpokemonarea>
+                            />)
+                        }):Loading}
 
+            </Styledpokemonarea>
+        
+        <Pagination />
+    </>
     )
 }
 
-const mapStateToProps = (state) => ({types: state.Pokemondate.pokemonDetails.formData});
+const mapStateToProps = (state) => ({data: state.Pokemondata});
 
 const mapDispatchToProps = {
-    addPokemonData
+    fetchData
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Pokemonlist);

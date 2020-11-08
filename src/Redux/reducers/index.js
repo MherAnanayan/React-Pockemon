@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import Pokemondate from './Pokemondate';
+import Pokemondata from './Pokemondata';
 
 export default combineReducers({
-    Pokemondate,
+    Pokemondata,
 });
